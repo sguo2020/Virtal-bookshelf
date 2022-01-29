@@ -2,7 +2,9 @@ from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///library.db"
+
 db = SQLAlchemy(app)
 
 
@@ -51,12 +53,44 @@ def edit_rating():
 
 
 @app.route("/delete", methods=['GET', 'POST'])
+=======
+@app.route('/', methods=["GET", "POST"])
+def home():
+    all_books = Book.query.all()
+    return render_template('index.html', books=all_books)
+
+
+@app.route('delete', methods=["GET", "POST"])
+
 def delete():
     book_id = request.args.get('id')
     book_to_delete = Book.query.get(book_id)
     db.session.delete(book_to_delete)
     db.session.commit()
     return redirect(url_for('home'))
+
+@app.route("/add", methods=["GET", "POST"])
+def add():
+    if request.method == "POST":
+        new_book = Book(title=request.form['title'], author=request.form["author"], rating=request.form["rating"])
+        db.session.add(new_book)
+        db.session.commit()
+        return redirect(url_for("home"))
+    return render_template("add.html")
+
+
+@app.route("/edit", methods=["GET", "POST"])
+def edit():
+    if request.method == "POST":
+        book_id = request.form['id']
+        book_to_edit = Book.query.get(book_id)
+        book_to_edit.rating = request.form['rating']
+        db.session.commit()
+        return redirect(url_for('home'))
+    book_id = request.args.get('id')
+    book_to_edit = Book.query.get(book_id)
+    return render_template("edit_rating.html", book=book_to_edit)
+
 
 
 if __name__ == "__main__":

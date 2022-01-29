@@ -2,15 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>edit rating</title>
+
+    <title>Edit rating</title>
 </head>
 <body>
-    <form action="{{url_for('edit_rating')}}" method="POST"
-    <p>Book Title: {{book.title}}</p>
+    <form action="{{url_for('edit')}}"   method="POST">
+    <p>Book Name: {{book.title}}</p>
+
     <p>Current Rating: {{book.rating}}</p>
-    <input type="hidden" name="id" value={{book.id}}>
+    <input hidden="hidden" name="id" value="{{book.id}}">
     <input type="text" name="rating">
-    <label>New Rating</label>
-    <button type="submit">Done</button>
+    <button type="submit">Change Rating</button>
+    </form>
+
 </body>
 </html>

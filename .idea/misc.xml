@@ -3,7 +3,11 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+<<<<<<< HEAD
   <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.10 (d63 #2)" project-jdk-type="Python SDK" />
+=======
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.10 (d63 virtual bookshelf)" project-jdk-type="Python SDK" />
+>>>>>>> 3f75f33c1687956f1f25e6b571ac55ccc1376138
   <component name="PyCharmProfessionalAdvertiser">
     <option name="shown" value="true" />
   </component>
